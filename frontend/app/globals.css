@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  --background: #211c31;
+  --foreground: #ededed;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #211c31;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Global corner radius normalization */
+/* Map larger radii to md for consistent sharp look */
+.rounded-2xl { border-radius: 0.375rem !important; }
+.rounded-3xl { border-radius: 0.375rem !important; }
+.rounded-xl { border-radius: 0.375rem !important; }
+
+/* Remove placeholder opacity */
+::placeholder {
+  opacity: 1 !important;
+  color: #6b7280 !important;
+}
+
+/* For WebKit browsers (Chrome, Safari) */
+::-webkit-input-placeholder {
+  opacity: 1 !important;
+  color: #6b7280 !important;
+}
+
+/* For Firefox */
+::-moz-placeholder {
+  opacity: 1 !important;
+  color: #6b7280 !important;
+}
+
+/* For Edge */
+::-ms-input-placeholder {
+  opacity: 1 !important;
+  color: #6b7280 !important;
+}
+
+/* Input field text color fixes */
+input, textarea, select {
+  color: #6b7280 !important;
+  background-color: #ffffff !important;
+}
+
+/* Dark mode input fixes */
+@media (prefers-color-scheme: dark) {
+  input, textarea, select {
+    color: #9ca3af !important;
+    background-color: #f9fafb !important;
+  }
+}
+
+/* Specific input types */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+  color: #6b7280 !important;
+  background-color: #ffffff !important;
+}
+
+/* Dark mode specific input types */
+@media (prefers-color-scheme: dark) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  textarea,
+  select {
+    color: #9ca3af !important;
+    background-color: #f9fafb !important;
+  }
+}
