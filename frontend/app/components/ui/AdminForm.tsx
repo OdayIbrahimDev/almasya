@@ -21,12 +21,13 @@ interface AdminFormProps {
 interface FormField {
   name: string;
   label: string;
-  type: 'text' | 'email' | 'password' | 'number' | 'textarea' | 'select' | 'file' | 'date' | 'checkbox';
+  type: 'text' | 'email' | 'password' | 'number' | 'textarea' | 'select' | 'multiselect' | 'file' | 'date' | 'checkbox';
   placeholder?: string;
   required?: boolean;
   options?: { value: string; label: string }[];
   validation?: (value: any) => string | null;
   className?: string;
+  showWhen?: (data: any) => boolean;
 }
 
 const AdminForm = ({
@@ -143,6 +144,17 @@ const AdminForm = ({
           </select>
         );
 
+      case 'multiselect':
+        return (
+          <select {...commonProps} multiple>
+            {field.options?.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        );
+
       case 'file':
         return (
           <div className="relative">
@@ -230,7 +242,13 @@ const AdminForm = ({
       {/* Form */}
       <form onSubmit={handleSubmit} className="p-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {fields.map((field, index) => (
+          {fields.map((field, index) => {
+            // Check if field should be shown
+            if (field.showWhen && !field.showWhen(formData)) {
+              return null;
+            }
+            
+            return (
             <motion.div
               key={field.name}
               initial={{ opacity: 0, y: 20 }}
@@ -259,7 +277,8 @@ const AdminForm = ({
                 )}
               </AnimatePresence>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Actions */}
