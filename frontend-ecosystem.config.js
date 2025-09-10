@@ -3,6 +3,7 @@ module.exports = {
     name: 'almasya-web',
     script: 'npm',
     args: 'start',
+    cwd: 'frontend',
     instances: 1,
     exec_mode: 'cluster',
     env: {

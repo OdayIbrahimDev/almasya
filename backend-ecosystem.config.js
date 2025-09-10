@@ -1,7 +1,7 @@
 module.exports = {
   apps: [{
     name: 'almasya-api',
-    script: 'src/server.js',
+    script: 'backend/src/server.js',
     instances: 1,
     exec_mode: 'cluster',
     env: {
