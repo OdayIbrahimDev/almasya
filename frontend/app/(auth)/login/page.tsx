@@ -28,8 +28,9 @@ const LoginPage = () => {
     try {
       await login(formData.email, formData.password);
       router.push('/');
-    } catch (err: any) {
-      setError(err.message || 'خطأ في تسجيل الدخول');
+    } catch (err: unknown) {
+      const error = err as { message?: string };
+      setError(error.message || 'خطأ في تسجيل الدخول');
     } finally {
       setIsLoading(false);
     }

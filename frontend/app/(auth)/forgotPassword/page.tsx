@@ -37,11 +37,12 @@ const ForgotPasswordPage = () => {
 					router.push(`/resetPassword?email=${encodeURIComponent(email)}`);
 				}, 2000);
 			}
-		} catch (e: any) {
-			if (e?.response?.status === 404) {
+		} catch (e: unknown) {
+			const error = e as { response?: { status?: number; data?: { message?: string } } };
+			if (error?.response?.status === 404) {
 				setMessage('البريد الإلكتروني غير مسجل في النظام');
 			} else {
-				setMessage(e?.response?.data?.message || 'خطأ في الطلب');
+				setMessage(error?.response?.data?.message || 'خطأ في الطلب');
 			}
 		} finally {
 			setLoading(false);

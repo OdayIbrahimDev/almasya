@@ -29,8 +29,9 @@ const RegisterPage = () => {
     try {
       await register(formData.name, formData.email, formData.password);
       router.push('/');
-    } catch (err: any) {
-      setError(err.message || 'خطأ في إنشاء الحساب');
+    } catch (err: unknown) {
+      const error = err as { message?: string };
+      setError(error.message || 'خطأ في إنشاء الحساب');
     } finally {
       setIsLoading(false);
     }

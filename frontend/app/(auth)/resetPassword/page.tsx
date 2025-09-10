@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, Suspense } from 'react';
 import Header from '../../components/layout/Header';
 import { motion } from 'framer-motion';
-import { Eye, EyeOff, Key, Lock } from 'lucide-react';
+import { Eye, EyeOff, Lock } from 'lucide-react';
 import api from '../../service/api';
 import { colorClasses } from '../../utils/colors';
 import { useRouter, useSearchParams } from 'next/navigation';
