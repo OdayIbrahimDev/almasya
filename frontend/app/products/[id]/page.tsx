@@ -100,13 +100,15 @@ const ProductDetailPage = () => {
     if (!product) return;
     try {
       const raw = localStorage.getItem('wishlistItems');
-      let items: any[] = raw ? JSON.parse(raw) : [];
-      const idx = items.findIndex((it) => it._id === product._id);
+      const currentItems: any[] = raw ? JSON.parse(raw) : [];
+      const idx = currentItems.findIndex((it) => it._id === product._id);
+      
+      let newItems: any[];
       if (idx >= 0) {
-        items.splice(idx, 1);
+        newItems = currentItems.filter((_, index) => index !== idx);
         setIsWishlisted(false);
       } else {
-        items.push({
+        newItems = [...currentItems, {
           _id: product._id,
           name: product.name,
           description: product.description,
@@ -115,10 +117,10 @@ const ProductDetailPage = () => {
           currency: product.currency?.symbol || 'د.أ',
           image: product.image || '',
           category: product.category?.name || 'بدون فئة'
-        });
+        }];
         setIsWishlisted(true);
       }
-      localStorage.setItem('wishlistItems', JSON.stringify(items));
+      localStorage.setItem('wishlistItems', JSON.stringify(newItems));
     } catch (e) {
       console.error('Wishlist error:', e);
     }
