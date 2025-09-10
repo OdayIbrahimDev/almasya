@@ -186,21 +186,42 @@ const HomePage = () => {
           
           {/* Floating Particles */}
           <div className="absolute inset-0 pointer-events-none">
-            {[...Array(20)].map((_, i) => (
+            {[
+              { left: 79.4, top: 4.6 },
+              { left: 7.9, top: 79.2 },
+              { left: 76.7, top: 59.5 },
+              { left: 75.4, top: 98.1 },
+              { left: 32.3, top: 59.8 },
+              { left: 15.6, top: 60.1 },
+              { left: 17.4, top: 83.5 },
+              { left: 20.8, top: 15.9 },
+              { left: 3.1, top: 39.9 },
+              { left: 96.3, top: 0.3 },
+              { left: 73.9, top: 95.1 },
+              { left: 55.0, top: 94.6 },
+              { left: 18.1, top: 56.1 },
+              { left: 8.6, top: 88.6 },
+              { left: 40.2, top: 75.7 },
+              { left: 46.2, top: 31.7 },
+              { left: 35.3, top: 73.9 },
+              { left: 97.9, top: 41.7 },
+              { left: 2.2, top: 18.9 },
+              { left: 15.8, top: 57.6 }
+            ].map((pos, i) => (
               <motion.div key={i}
                 className="absolute w-2 h-2 bg-white/30 rounded-full"
                 style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
+                  left: `${pos.left}%`,
+                  top: `${pos.top}%`,
                 }}
                 animate={{
                   y: [0, -20, 0],
                   opacity: [0.3, 0.8, 0.3],
                 }}
                 transition={{
-                  duration: 3 + Math.random() * 2,
+                  duration: 3 + (i % 3),
                   repeat: Infinity,
-                  delay: Math.random() * 2,
+                  delay: i * 0.1,
                 }}
               />
             ))}

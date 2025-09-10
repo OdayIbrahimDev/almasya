@@ -240,34 +240,90 @@ const CheckoutPage = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           {/* Confetti Animation */}
           <div className="absolute inset-0 pointer-events-none">
-            {[...Array(50)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-3 h-3 rounded-full"
-                style={{
-                  backgroundColor: ['#a075ad', '#8b6a9a', '#7a5a8a', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'][Math.floor(Math.random() * 8)],
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                initial={{ 
-                  y: -100, 
-                  x: Math.random() * window.innerWidth,
-                  rotate: 0,
-                  scale: 1
-                }}
-                animate={{ 
-                  y: window.innerHeight + 100,
-                  x: Math.random() * window.innerWidth,
-                  rotate: 360,
-                  scale: 0
-                }}
-                transition={{ 
-                  duration: 3,
-                  delay: Math.random() * 2,
-                  ease: "easeOut"
-                }}
-              />
-            ))}
+            {Array.from({ length: 50 }, (_, i) => {
+              const colors = ['#a075ad', '#8b6a9a', '#7a5a8a', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'];
+              const positions = [
+                { left: 10, top: 20, x: 100 },
+                { left: 20, top: 30, x: 200 },
+                { left: 30, top: 40, x: 300 },
+                { left: 40, top: 50, x: 400 },
+                { left: 50, top: 60, x: 500 },
+                { left: 60, top: 70, x: 600 },
+                { left: 70, top: 80, x: 700 },
+                { left: 80, top: 90, x: 800 },
+                { left: 90, top: 10, x: 900 },
+                { left: 15, top: 25, x: 150 },
+                { left: 25, top: 35, x: 250 },
+                { left: 35, top: 45, x: 350 },
+                { left: 45, top: 55, x: 450 },
+                { left: 55, top: 65, x: 550 },
+                { left: 65, top: 75, x: 650 },
+                { left: 75, top: 85, x: 750 },
+                { left: 85, top: 95, x: 850 },
+                { left: 95, top: 15, x: 950 },
+                { left: 12, top: 22, x: 120 },
+                { left: 22, top: 32, x: 220 },
+                { left: 32, top: 42, x: 320 },
+                { left: 42, top: 52, x: 420 },
+                { left: 52, top: 62, x: 520 },
+                { left: 62, top: 72, x: 620 },
+                { left: 72, top: 82, x: 720 },
+                { left: 82, top: 92, x: 820 },
+                { left: 92, top: 12, x: 920 },
+                { left: 18, top: 28, x: 180 },
+                { left: 28, top: 38, x: 280 },
+                { left: 38, top: 48, x: 380 },
+                { left: 48, top: 58, x: 480 },
+                { left: 58, top: 68, x: 580 },
+                { left: 68, top: 78, x: 680 },
+                { left: 78, top: 88, x: 780 },
+                { left: 88, top: 98, x: 880 },
+                { left: 98, top: 18, x: 980 },
+                { left: 14, top: 24, x: 140 },
+                { left: 24, top: 34, x: 240 },
+                { left: 34, top: 44, x: 340 },
+                { left: 44, top: 54, x: 440 },
+                { left: 54, top: 64, x: 540 },
+                { left: 64, top: 74, x: 640 },
+                { left: 74, top: 84, x: 740 },
+                { left: 84, top: 94, x: 840 },
+                { left: 94, top: 14, x: 940 },
+                { left: 16, top: 26, x: 160 },
+                { left: 26, top: 36, x: 260 },
+                { left: 36, top: 46, x: 360 },
+                { left: 46, top: 56, x: 460 },
+                { left: 56, top: 66, x: 560 }
+              ];
+              const pos = positions[i % positions.length];
+              return (
+                <motion.div
+                  key={i}
+                  className="absolute w-3 h-3 rounded-full"
+                  style={{
+                    backgroundColor: colors[i % colors.length],
+                    left: `${pos.left}%`,
+                    top: `${pos.top}%`,
+                  }}
+                  initial={{ 
+                    y: -100, 
+                    x: pos.x,
+                    rotate: 0,
+                    scale: 1
+                  }}
+                  animate={{ 
+                    y: 1000,
+                    x: pos.x + (i % 2 === 0 ? 100 : -100),
+                    rotate: 360,
+                    scale: 0
+                  }}
+                  transition={{ 
+                    duration: 3,
+                    delay: i * 0.1,
+                    ease: "easeOut"
+                  }}
+                />
+              );
+            })}
           </div>
 
           <motion.div

@@ -41,22 +41,38 @@ const Footer = () => {
       
       {/* Floating Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(15)].map((_, i) => (
+        {[
+          { left: 57.3, top: 62.0 },
+          { left: 98.1, top: 95.5 },
+          { left: 44.7, top: 52.2 },
+          { left: 13.3, top: 40.2 },
+          { left: 70.3, top: 29.3 },
+          { left: 0.3, top: 86.5 },
+          { left: 31.2, top: 1.6 },
+          { left: 81.4, top: 73.7 },
+          { left: 62.2, top: 8.4 },
+          { left: 53.0, top: 90.7 },
+          { left: 49.8, top: 7.2 },
+          { left: 69.1, top: 30.7 },
+          { left: 57.6, top: 92.3 },
+          { left: 29.7, top: 43.8 },
+          { left: 13.7, top: 97.7 }
+        ].map((pos, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-white/20 rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${pos.left}%`,
+              top: `${pos.top}%`,
             }}
             animate={{
               y: [0, -30, 0],
               opacity: [0.2, 0.6, 0.2],
             }}
             transition={{
-              duration: 4 + Math.random() * 3,
+              duration: 4 + (i % 4),
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: i * 0.2,
             }}
           />
         ))}
